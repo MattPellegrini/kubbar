@@ -27,6 +27,7 @@ import {
   TopRight,
 } from "./model";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useCookies } from "react-cookie";
 
 const variations = getVariations();
 
@@ -42,6 +43,10 @@ const darkTheme = createTheme({
   },
 });
 
+const defaultLightsOn = true;
+const defaultFaceColor = "CornflowerBlue";
+const defaultCountDownDuration = 3;
+
 function App() {
   const [topLeftSvg, setTopLeftSvg] = useState<string>();
   const [topRightSvg, setTopRightSvg] = useState<string>();
@@ -52,14 +57,43 @@ function App() {
   const [bottomLeftRotation, setBottomLeftRotation] = useState("Rot0");
   const [bottomRightRotation, setBottomRightRotation] = useState("Rot0");
   const [variationNumber, setVariationNumber] = useState<string>();
-  const [faceBackgroundColor, setFaceBackgroundColor] =
-    useState("CornflowerBlue");
   const [SettingsDrawerOpen, setSettingsDrawerOpen] = useState(false);
   const [released, setReleased] = useState(true);
   const [shuffling, setShuffling] = useState(false);
-  const [countdownStart, setCountdownStart] = useState(3);
-  const [countdownValue, setCountdownValue] = useState(3);
-  const [lightsOn, setLightsOn] = useState(true);
+  const [countdownValue, setCountdownValue] = useState(
+    defaultCountDownDuration
+  );
+  const [cookies, setCookie] = useCookies(["userPreferences"]);
+
+  function updateLigthtsOn(newState: Boolean) {
+    let userPreferences = { ...cookies.userPreferences };
+    userPreferences.lightsOn = newState;
+    setCookie("userPreferences", userPreferences);
+  }
+
+  function updateFaceColor(newColor: string) {
+    let userPreferences = { ...cookies.userPreferences };
+    userPreferences.faceColor = newColor;
+    setCookie("userPreferences", userPreferences);
+  }
+
+  function updateCountdownDuration(newDuration: number) {
+    let userPreferences = { ...cookies.userPreferences };
+    userPreferences.countdownDuration = newDuration > 0 ? newDuration : 0;
+    setCookie("userPreferences", userPreferences);
+  }
+
+  // Defaults
+  const userPreferences = { ...cookies.userPreferences };
+  if (userPreferences.lightsOn === undefined) {
+    userPreferences.lightsOn = defaultLightsOn;
+  }
+  if (userPreferences.faceColor === undefined) {
+    userPreferences.faceColor = defaultFaceColor;
+  }
+  if (userPreferences.countdownDuration === undefined) {
+    userPreferences.countdownDuration = defaultCountDownDuration;
+  }
 
   useLayoutEffect(() => {
     const anyNav: any = navigator;
@@ -114,10 +148,10 @@ function App() {
         setBottomRightRotation(`Rot${rotation}`);
       }
     });
-    countdown(countdownStart, () => setShuffling(false));
+    countdown(userPreferences.countdownDuration, () => setShuffling(false));
   }
   return (
-    <ThemeProvider theme={lightsOn ? lightTheme : darkTheme}>
+    <ThemeProvider theme={userPreferences.lightsOn ? lightTheme : darkTheme}>
       <CssBaseline />
       <div className="PageContainer">
         <div className="TopBar">
@@ -154,7 +188,7 @@ function App() {
               <ListItemButton
                 key={c}
                 className="PalleteListItem"
-                onClick={() => setFaceBackgroundColor(c)}
+                onClick={() => updateFaceColor(c)}
               >
                 <ListItemIcon>
                   <Square style={{ color: c }} />
@@ -163,27 +197,31 @@ function App() {
               </ListItemButton>
             ))}
             <ListSubheader>Countdown duration</ListSubheader>
-            <ListItem>{countdownStart} seconds</ListItem>
+            <ListItem>{userPreferences.countdownDuration} seconds</ListItem>
             <div className="SliderContainer">
               <Slider
                 aria-label="Seconds"
-                value={countdownStart}
+                value={userPreferences.countdownDuration}
                 valueLabelDisplay="auto"
                 step={1}
                 marks
                 min={0}
                 max={10}
-                onChange={(_, value) => setCountdownStart(value as number)}
+                onChange={(_, value) =>
+                  updateCountdownDuration(value as number)
+                }
                 className="CountdownSlider"
                 orientation="vertical"
               />
             </div>
             <ListSubheader>Theme</ListSubheader>
-            <ListItem>{lightsOn ? "Light Mode" : "DarkMode"} </ListItem>
+            <ListItem>
+              {userPreferences.lightsOn ? "Light Mode" : "DarkMode"}
+            </ListItem>
             <Switch
-              checked={lightsOn}
+              checked={userPreferences.lightsOn}
               onChange={(_, checked) => {
-                setLightsOn(checked);
+                updateLigthtsOn(checked);
               }}
               color="warning"
             />
@@ -193,13 +231,17 @@ function App() {
           <div
             className="Face"
             style={{
-              backgroundColor: shuffling ? "transparent" : faceBackgroundColor,
+              backgroundColor: shuffling
+                ? "transparent"
+                : userPreferences.faceColor,
             }}
             onClick={shuffleFace}
           >
             {shuffling && (
               <div className="Countdown">
-                <h1 style={{ color: faceBackgroundColor }}>{countdownValue}</h1>
+                <h1 style={{ color: userPreferences.faceColor }}>
+                  {countdownValue}
+                </h1>
               </div>
             )}
             <div className="SvgRow">
