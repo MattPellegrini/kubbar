@@ -62,15 +62,15 @@ class Placement {
 const eye01 = new Face(
   e1,
   new Map<Quarter, Array<Rotation>>([
-    [TopLeft, [0, 270]],
-    [TopRight, [0, 270]],
+    [TopLeft, [0, 180]],
+    [TopRight, [0, 180]],
   ])
 );
 const eye02 = new Face(
   e2,
   new Map<Quarter, Array<Rotation>>([
-    [TopLeft, [0, 90]],
-    [TopRight, [0, 90]],
+    [TopLeft, [0, 180]],
+    [TopRight, [0, 180]],
   ])
 );
 const eye03 = new Face(
@@ -273,18 +273,18 @@ function getVariations() {
     const br = v.get(BottomRight);
 
     if (tl && tr && bl && br) {
-      // Eye 1 must be with eye 2
       if (
         [
-          xor(
-            cubes[tl.cubeIndex][tl.faceIndex] === eye01,
-            cubes[tr.cubeIndex][tr.faceIndex] === eye02
-          ),
+          // Eye 1 must be with eye 2
+          // xor(
+          //   cubes[tl.cubeIndex][tl.faceIndex] === eye01,
+          //   cubes[tr.cubeIndex][tr.faceIndex] === eye02
+          // ),
           // Eye 2 must be with eye 1
-          xor(
-            cubes[tl.cubeIndex][tl.faceIndex] === eye02,
-            cubes[tr.cubeIndex][tr.faceIndex] === eye01
-          ),
+          // xor(
+          //   cubes[tl.cubeIndex][tl.faceIndex] === eye02,
+          //   cubes[tr.cubeIndex][tr.faceIndex] === eye01
+          // ),
           // Mouth 9 must be with mouth 10
           xor(
             cubes[bl.cubeIndex][bl.faceIndex] === mouth09,
