@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="20mm" height="20mm" version="1.1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <clipPath id="clipPath35383">
+   <circle transform="rotate(55.702)" cx="41.967" cy="47.244" r="6.6171" fill="#fff" fill-opacity=".12941" stroke="#fc0" stroke-width=".25"/>
+  </clipPath>
+  <clipPath id="clipPath37566">
+   <rect transform="scale(-1,1)" x="-52.774" y="36.736" width="19.512" height="19.512" fill="#08a" stroke="#08a" stroke-width=".4878"/>
+  </clipPath>
+ </defs>
+ <g transform="translate(-33.018 -36.492)">
+  <rect transform="scale(-1,1)" x="-52.774" y="36.736" width="19.512" height="19.512" fill="#08a" stroke="#08a" stroke-width=".4878"/>
+  <circle cx="41.967" cy="47.244" r="6.6171" fill="#fff" fill-opacity=".12941" stroke="#fc0" stroke-width=".25"/>
+  <rect transform="rotate(-55.702)" x="-24.635" y="58.809" width="19.952" height="4.3245" clip-path="url(#clipPath35383)" fill="#0ff" opacity=".17"/>
+  <ellipse cx="48.793" cy="47.475" rx=".24571" ry=".66342"/>
+  <g stroke="#000">
+   <path d="m48.793 47.647s-0.15256 15.577 3.32 4.4719c1.4455-4.6225 1.5756-2.8994 1.5756-2.8994" clip-path="url(#clipPath37566)" fill="none" stroke-width=".28312px"/>
+   <ellipse transform="matrix(-.96593 .25882 .25882 .96593 0 0)" cx="-28.31" cy="56.496" rx="4.5669" ry="4.5669" fill="#fff" stroke-width=".36444"/>
+   <ellipse transform="scale(-1,1)" cx="-41.438" cy="47.773" rx="2.654" ry="2.5304" stroke-width=".35415"/>
+  </g>
+ </g>
+</svg>

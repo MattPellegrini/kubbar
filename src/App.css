@@ -1,0 +1,64 @@
+.PageContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.SvgRow {
+  height: 10rem;
+  width: 20rem;
+  justify-self: center;
+}
+.Face {
+  width: fit-content;
+  margin: 20px;
+  align-self: center;
+  justify-self: center;
+}
+.FaceQuarter {
+  height: auto;
+  width: 50%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.FaceNumberText {
+  text-align: center;
+  color: #999;
+  font-size: 2em;
+  font-style: bold;
+  font-family: monospace;
+}
+.Rot0 {
+  transform: rotate(0deg);
+}
+.Rot90 {
+  transform: rotate(90deg);
+}
+.Rot180 {
+  transform: rotate(180deg);
+}
+.Rot270 {
+  transform: rotate(270deg);
+}
+.ShuffleButton {
+  width: 20rem;
+  margin-top: 20px;
+  font-size: 3em;
+  align-self: center;
+  background-color: #aaa;
+}
+.SettingsDrawer {
+}
+.SettingsDrawerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1vw;
+}
+.PalleteList {
+}
+.PalleteListItem {
+}

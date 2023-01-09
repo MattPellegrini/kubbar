@@ -1,0 +1,16 @@
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="40mm" height="40mm" version="1.1" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-107.54 -241.74)">
+  <g transform="matrix(-1 0 0 1 255.08 0)">
+   <g transform="matrix(1.0004 0 0 1 .23789 0)">
+    <rect transform="scale(1,-1)" x="107.25" y="-281.74" width="39.983" height="40" fill="#9990"/>
+    <g transform="translate(-.017494)" fill="none" stroke="#000" stroke-width=".8097">
+     <path d="m147.24 261.74c-4.7125-0.20372-3.9442 3.3001-5.8252 2.9958-1.8809-0.30431-2.6012-4.4932-4.6283-4.3908-2.0271 0.10245-1.3954 4.6354-3.2717 4.79-1.8762 0.15448-1.5159-4.33-3.5111-4.231-1.9952 0.0988-2.5146 4.6303-4.5485 4.6303-2.0339 0-2.2343-3.0869-3.3514-4.6303"/>
+     <path d="m123.06 258.57-0.95755 2.3343-2.4737 0.22045" stroke-linecap="round"/>
+    </g>
+   </g>
+  </g>
+  <path d="m124.4 30.849s4.3724-0.60819 6.5291-1.9061c2.518-1.5155 3.9896-5.4704 3.9896-5.4704" display="none" fill="none" stroke="#000" stroke-width=".26458px"/>
+  <path d="m131.01 80.02s-3.99-1.889-5.6593-3.7729c-1.949-2.1997-2.1694-6.4137-2.1694-6.4137" display="none" fill="none" stroke="#000" stroke-width=".26458px"/>
+ </g>
+</svg>
