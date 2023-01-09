@@ -127,11 +127,13 @@ function App() {
           {[
             "Coral",
             "CornflowerBlue",
-            "DarkSeaGreen",
             "SeaGreen",
+            "IndianRed",
             "Crimson",
             "GoldenRod",
             "Turquoise",
+            "Thistle",
+            "DarkCyan",
           ].map((c) => (
             <ListItemButton
               key={c}
