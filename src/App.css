@@ -17,7 +17,6 @@
   margin: 20px;
   align-self: center;
   justify-self: center;
-  background-color: black;
 }
 .FaceQuarter {
   height: auto;
@@ -68,4 +67,7 @@
 }
 .CountdownSlider {
   margin: 1vw;
+}
+.Hidden {
+  visibility: hidden;
 }

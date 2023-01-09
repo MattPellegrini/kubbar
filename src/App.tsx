@@ -158,38 +158,42 @@ function App() {
               <h1 style={{ color: faceBackgroundColor }}>{countdownValue}</h1>
             </div>
           )}
-          {shuffling || (
-            <div className="SvgRow">
-              <img
-                src={topLeftSvg}
-                className={`FaceQuarter ${topLeftRotation}`}
-                alt="Top Left Face Quarter"
-                style={{ backgroundColor: faceBackgroundColor }}
-              />
-              <img
-                src={topRightSvg}
-                className={`FaceQuarter ${topRightRotation}`}
-                alt="Top Right Face Quarter"
-                style={{ backgroundColor: faceBackgroundColor }}
-              />
-            </div>
-          )}
-          {shuffling || (
-            <div className="SvgRow">
-              <img
-                src={bottomLeftSvg}
-                className={`FaceQuarter ${bottomLeftRotation}`}
-                alt="Bottom Left Face Quarter"
-                style={{ backgroundColor: faceBackgroundColor }}
-              />
-              <img
-                src={bottomRightSvg}
-                className={`FaceQuarter ${bottomRightRotation}`}
-                alt="Bottom Right Face Quarter"
-                style={{ backgroundColor: faceBackgroundColor }}
-              />
-            </div>
-          )}
+          <div className="SvgRow">
+            <img
+              src={topLeftSvg}
+              className={`FaceQuarter ${topLeftRotation} ${
+                shuffling && "Hidden"
+              }`}
+              alt="Top Left Face Quarter"
+              style={{ backgroundColor: faceBackgroundColor }}
+            />
+            <img
+              src={topRightSvg}
+              className={`FaceQuarter ${topRightRotation} ${
+                shuffling && "Hidden"
+              }`}
+              alt="Top Right Face Quarter"
+              style={{ backgroundColor: faceBackgroundColor }}
+            />
+          </div>
+          <div className="SvgRow">
+            <img
+              src={bottomLeftSvg}
+              className={`FaceQuarter ${bottomLeftRotation} ${
+                shuffling && "Hidden"
+              }`}
+              alt="Bottom Left Face Quarter"
+              style={{ backgroundColor: faceBackgroundColor }}
+            />
+            <img
+              src={bottomRightSvg}
+              className={`FaceQuarter ${bottomRightRotation} ${
+                shuffling && "Hidden"
+              }`}
+              alt="Bottom Right Face Quarter"
+              style={{ backgroundColor: faceBackgroundColor }}
+            />
+          </div>
         </div>
       )}
       <p className="FaceNumberText">Face #{variationNumber}</p>
