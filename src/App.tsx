@@ -190,7 +190,13 @@ function App() {
           </List>
         </Drawer>
         {topLeftSvg && topRightSvg && bottomLeftSvg && bottomRightSvg && (
-          <div className="Face">
+          <div
+            className="Face"
+            style={{
+              backgroundColor: shuffling ? "#ffffffff" : faceBackgroundColor,
+            }}
+            onClick={shuffleFace}
+          >
             {shuffling && (
               <div className="Countdown">
                 <h1 style={{ color: faceBackgroundColor }}>{countdownValue}</h1>
@@ -203,7 +209,6 @@ function App() {
                   shuffling && "Hidden"
                 }`}
                 alt="Top Left Face Quarter"
-                style={{ backgroundColor: faceBackgroundColor }}
               />
               <img
                 src={topRightSvg}
@@ -211,7 +216,6 @@ function App() {
                   shuffling && "Hidden"
                 }`}
                 alt="Top Right Face Quarter"
-                style={{ backgroundColor: faceBackgroundColor }}
               />
             </div>
             <div className="SvgRow">
@@ -221,7 +225,6 @@ function App() {
                   shuffling && "Hidden"
                 }`}
                 alt="Bottom Left Face Quarter"
-                style={{ backgroundColor: faceBackgroundColor }}
               />
               <img
                 src={bottomRightSvg}
@@ -229,7 +232,6 @@ function App() {
                   shuffling && "Hidden"
                 }`}
                 alt="Bottom Right Face Quarter"
-                style={{ backgroundColor: faceBackgroundColor }}
               />
             </div>
           </div>
@@ -238,8 +240,10 @@ function App() {
         <Button
           className="ShuffleButton"
           variant="outlined"
+          size="large"
           startIcon={<Refresh />}
           onClick={shuffleFace}
+          sx={{ padding: "1em" }}
         >
           New Face
         </Button>

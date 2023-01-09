@@ -7,13 +7,13 @@
 }
 
 .SvgRow {
-  height: 10rem;
-  width: 20rem;
+  width: 90vmin;
+  height: 45vmin;
   justify-self: center;
 }
 .Face {
-  width: 20rem;
-  height: 20rem;
+  width: 90vmin;
+  height: 90vmin;
   margin: 20px;
   align-self: center;
   justify-self: center;
@@ -45,9 +45,10 @@
   transform: rotate(270deg);
 }
 .ShuffleButton {
-  width: 20rem;
+  width: 90vmin;
   margin-top: 20px;
-  font-size: 3em;
+  font-size: 6em;
+  padding-top: 2em;
   align-self: center;
   background-color: #aaa;
 }
@@ -60,7 +61,7 @@
 .Countdown {
   height: 100%;
   width: 100%;
-  font-size: 8rem;
+  font-size: 45vmin;
   display: flex;
   justify-content: center;
   align-items: center;
