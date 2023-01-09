@@ -140,7 +140,7 @@ function App() {
           <ListItem>{countdownStart} seconds</ListItem>
           <Slider
             aria-label="Seconds"
-            defaultValue={countdownStart}
+            value={countdownStart}
             valueLabelDisplay="auto"
             step={1}
             marks
