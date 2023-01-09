@@ -12,10 +12,12 @@
   justify-self: center;
 }
 .Face {
-  width: fit-content;
+  width: 20rem;
+  height: 20rem;
   margin: 20px;
   align-self: center;
   justify-self: center;
+  background-color: black;
 }
 .FaceQuarter {
   height: auto;
@@ -54,5 +56,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 1vw;
+}
+.Countdown {
+  height: 100%;
+  width: 100%;
+  font-size: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.CountdownSlider {
   margin: 1vw;
 }
