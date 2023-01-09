@@ -193,7 +193,7 @@ function App() {
           <div
             className="Face"
             style={{
-              backgroundColor: shuffling ? "#ffffffff" : faceBackgroundColor,
+              backgroundColor: shuffling ? "transparent" : faceBackgroundColor,
             }}
             onClick={shuffleFace}
           >
