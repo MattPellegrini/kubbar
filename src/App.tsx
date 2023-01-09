@@ -5,6 +5,7 @@ import "@fontsource/roboto/700.css";
 import { Close, Refresh, SettingsOutlined, Square } from "@mui/icons-material";
 import {
   Button,
+  CssBaseline,
   Drawer,
   List,
   ListItem,
@@ -13,6 +14,7 @@ import {
   ListItemText,
   ListSubheader,
   Slider,
+  Switch,
 } from "@mui/material";
 import { useLayoutEffect, useState } from "react";
 import "./App.css";
@@ -24,8 +26,21 @@ import {
   TopLeft,
   TopRight,
 } from "./model";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const variations = getVariations();
+
+const lightTheme = createTheme({
+  palette: {
+    mode: "light",
+  },
+});
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 function App() {
   const [topLeftSvg, setTopLeftSvg] = useState<string>();
@@ -44,6 +59,7 @@ function App() {
   const [shuffling, setShuffling] = useState(false);
   const [countdownStart, setCountdownStart] = useState(3);
   const [countdownValue, setCountdownValue] = useState(3);
+  const [lightsOn, setLightsOn] = useState(true);
 
   useLayoutEffect(() => {
     const anyNav: any = navigator;
@@ -100,123 +116,135 @@ function App() {
     });
     countdown(countdownStart, () => setShuffling(false));
   }
-  // TODO initialise to a blank face (background color only, but correct size).
-  // Probably easiest to do this by adding placeholder svgs.
   return (
-    <div className="PageContainer">
-      <div className="TopBar">
-        <Button onClick={() => setSettingsDrawerOpen(!SettingsDrawerOpen)}>
-          <SettingsOutlined />
+    <ThemeProvider theme={lightsOn ? lightTheme : darkTheme}>
+      <CssBaseline />
+      <div className="PageContainer">
+        <div className="TopBar">
+          <Button onClick={() => setSettingsDrawerOpen(!SettingsDrawerOpen)}>
+            <SettingsOutlined />
+          </Button>
+        </div>
+        <Drawer
+          className="SettingsDrawer"
+          anchor="left"
+          open={SettingsDrawerOpen}
+          onClose={() => setSettingsDrawerOpen(false)}
+          BackdropProps={{ invisible: true }}
+        >
+          <div className="SettingsDrawerHeader">
+            <h3>Settings</h3>
+            <Close onClick={() => setSettingsDrawerOpen(false)} />
+          </div>
+          <List
+            className="PalleteList"
+            subheader={<ListSubheader>Face Colour</ListSubheader>}
+          >
+            {[
+              "Coral",
+              "CornflowerBlue",
+              "SeaGreen",
+              "IndianRed",
+              "Crimson",
+              "GoldenRod",
+              "Turquoise",
+              "Thistle",
+              "DarkCyan",
+            ].map((c) => (
+              <ListItemButton
+                key={c}
+                className="PalleteListItem"
+                onClick={() => setFaceBackgroundColor(c)}
+              >
+                <ListItemIcon>
+                  <Square style={{ color: c }} />
+                </ListItemIcon>
+                <ListItemText>{c}</ListItemText>
+              </ListItemButton>
+            ))}
+            <ListSubheader>Countdown duration</ListSubheader>
+            <ListItem>{countdownStart} seconds</ListItem>
+            <div className="SliderContainer">
+              <Slider
+                aria-label="Seconds"
+                value={countdownStart}
+                valueLabelDisplay="auto"
+                step={1}
+                marks
+                min={0}
+                max={10}
+                onChange={(_, value) => setCountdownStart(value as number)}
+                className="CountdownSlider"
+                orientation="vertical"
+              />
+            </div>
+            <ListSubheader>Theme</ListSubheader>
+            <ListItem>{lightsOn ? "Light Mode" : "DarkMode"} </ListItem>
+            <Switch
+              checked={lightsOn}
+              onChange={(_, checked) => {
+                setLightsOn(checked);
+              }}
+              color="warning"
+            />
+          </List>
+        </Drawer>
+        {topLeftSvg && topRightSvg && bottomLeftSvg && bottomRightSvg && (
+          <div className="Face">
+            {shuffling && (
+              <div className="Countdown">
+                <h1 style={{ color: faceBackgroundColor }}>{countdownValue}</h1>
+              </div>
+            )}
+            <div className="SvgRow">
+              <img
+                src={topLeftSvg}
+                className={`FaceQuarter ${topLeftRotation} ${
+                  shuffling && "Hidden"
+                }`}
+                alt="Top Left Face Quarter"
+                style={{ backgroundColor: faceBackgroundColor }}
+              />
+              <img
+                src={topRightSvg}
+                className={`FaceQuarter ${topRightRotation} ${
+                  shuffling && "Hidden"
+                }`}
+                alt="Top Right Face Quarter"
+                style={{ backgroundColor: faceBackgroundColor }}
+              />
+            </div>
+            <div className="SvgRow">
+              <img
+                src={bottomLeftSvg}
+                className={`FaceQuarter ${bottomLeftRotation} ${
+                  shuffling && "Hidden"
+                }`}
+                alt="Bottom Left Face Quarter"
+                style={{ backgroundColor: faceBackgroundColor }}
+              />
+              <img
+                src={bottomRightSvg}
+                className={`FaceQuarter ${bottomRightRotation} ${
+                  shuffling && "Hidden"
+                }`}
+                alt="Bottom Right Face Quarter"
+                style={{ backgroundColor: faceBackgroundColor }}
+              />
+            </div>
+          </div>
+        )}
+        <p className="FaceNumberText">Face #{variationNumber}</p>
+        <Button
+          className="ShuffleButton"
+          variant="outlined"
+          startIcon={<Refresh />}
+          onClick={shuffleFace}
+        >
+          New Face
         </Button>
       </div>
-      <Drawer
-        className="SettingsDrawer"
-        anchor="left"
-        open={SettingsDrawerOpen}
-        onClose={() => setSettingsDrawerOpen(false)}
-        BackdropProps={{ invisible: true }}
-      >
-        <div className="SettingsDrawerHeader">
-          <h3>Settings</h3>
-          <Close onClick={() => setSettingsDrawerOpen(false)} />
-        </div>
-        <List
-          className="PalleteList"
-          subheader={<ListSubheader>Face Colour</ListSubheader>}
-        >
-          {[
-            "Coral",
-            "CornflowerBlue",
-            "SeaGreen",
-            "IndianRed",
-            "Crimson",
-            "GoldenRod",
-            "Turquoise",
-            "Thistle",
-            "DarkCyan",
-          ].map((c) => (
-            <ListItemButton
-              key={c}
-              className="PalleteListItem"
-              onClick={() => setFaceBackgroundColor(c)}
-            >
-              <ListItemIcon>
-                <Square style={{ color: c }} />
-              </ListItemIcon>
-              <ListItemText>{c}</ListItemText>
-            </ListItemButton>
-          ))}
-          <ListSubheader>Countdown duration</ListSubheader>
-          <ListItem>{countdownStart} seconds</ListItem>
-          <Slider
-            aria-label="Seconds"
-            value={countdownStart}
-            valueLabelDisplay="auto"
-            step={1}
-            marks
-            min={0}
-            max={10}
-            onChange={(_, value) => setCountdownStart(value as number)}
-            className="CountdownSlider"
-            orientation="vertical"
-          />
-        </List>
-      </Drawer>
-      {topLeftSvg && topRightSvg && bottomLeftSvg && bottomRightSvg && (
-        <div className="Face">
-          {shuffling && (
-            <div className="Countdown">
-              <h1 style={{ color: faceBackgroundColor }}>{countdownValue}</h1>
-            </div>
-          )}
-          <div className="SvgRow">
-            <img
-              src={topLeftSvg}
-              className={`FaceQuarter ${topLeftRotation} ${
-                shuffling && "Hidden"
-              }`}
-              alt="Top Left Face Quarter"
-              style={{ backgroundColor: faceBackgroundColor }}
-            />
-            <img
-              src={topRightSvg}
-              className={`FaceQuarter ${topRightRotation} ${
-                shuffling && "Hidden"
-              }`}
-              alt="Top Right Face Quarter"
-              style={{ backgroundColor: faceBackgroundColor }}
-            />
-          </div>
-          <div className="SvgRow">
-            <img
-              src={bottomLeftSvg}
-              className={`FaceQuarter ${bottomLeftRotation} ${
-                shuffling && "Hidden"
-              }`}
-              alt="Bottom Left Face Quarter"
-              style={{ backgroundColor: faceBackgroundColor }}
-            />
-            <img
-              src={bottomRightSvg}
-              className={`FaceQuarter ${bottomRightRotation} ${
-                shuffling && "Hidden"
-              }`}
-              alt="Bottom Right Face Quarter"
-              style={{ backgroundColor: faceBackgroundColor }}
-            />
-          </div>
-        </div>
-      )}
-      <p className="FaceNumberText">Face #{variationNumber}</p>
-      <Button
-        className="ShuffleButton"
-        variant="outlined"
-        startIcon={<Refresh />}
-        onClick={shuffleFace}
-      >
-        New Face
-      </Button>
-    </div>
+    </ThemeProvider>
   );
 }
 

@@ -65,6 +65,11 @@
   justify-content: center;
   align-items: center;
 }
+.SliderContainer {
+  height: 20vh;
+  padding-left: 3vw;
+  margin-bottom: 4vh;
+}
 .CountdownSlider {
   margin: 1vw;
 }
