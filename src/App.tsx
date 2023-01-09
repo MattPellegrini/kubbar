@@ -124,7 +124,15 @@ function App() {
           className="PalleteList"
           subheader={<ListSubheader>Face Colour</ListSubheader>}
         >
-          {["Coral", "CornflowerBlue", "SeaGreen"].map((c) => (
+          {[
+            "Coral",
+            "CornflowerBlue",
+            "DarkSeaGreen",
+            "SeaGreen",
+            "Crimson",
+            "GoldenRod",
+            "Turquoise",
+          ].map((c) => (
             <ListItemButton
               key={c}
               className="PalleteListItem"
