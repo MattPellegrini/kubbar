@@ -131,7 +131,7 @@ const eye12 = new Face(
   ])
 );
 const eye13 = new Face(
-  e12,
+  e13,
   new Map<Quarter, Array<Rotation>>([
     [TopLeft, [180]],
     [TopRight, [0]],

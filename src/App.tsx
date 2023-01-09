@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import {
   getVariations,
@@ -17,22 +17,13 @@ import {
   Button,
   Drawer,
   List,
-  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   ListSubheader,
 } from "@mui/material";
-import { createTheme } from "@mui/system";
-import { ThemeProvider } from "@emotion/react";
 
 const variations = getVariations();
-
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
 
 function App() {
   const [topLeftSvg, setTopLeftSvg] = useState<string>();
