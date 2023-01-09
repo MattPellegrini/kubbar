@@ -37,7 +37,8 @@ function App() {
   const [bottomLeftRotation, setBottomLeftRotation] = useState("Rot0");
   const [bottomRightRotation, setBottomRightRotation] = useState("Rot0");
   const [variationNumber, setVariationNumber] = useState<string>();
-  const [faceBackgroundColor, setFaceBackgroundColor] = useState("coral");
+  const [faceBackgroundColor, setFaceBackgroundColor] =
+    useState("CornflowerBlue");
   const [SettingsDrawerOpen, setSettingsDrawerOpen] = useState(false);
   const [released, setReleased] = useState(true);
   const [shuffling, setShuffling] = useState(false);
